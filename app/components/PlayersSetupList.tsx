@@ -1,5 +1,5 @@
 import { useCallback, useContext } from "react";
-import { PlayersContext } from "../context";
+import { PlayersContext, ScannerContext } from "../context";
 import { Player, PLAYER_COLOR } from "../models";
 
 const playerColorsArray = Object.values(PLAYER_COLOR);
@@ -45,6 +45,7 @@ const buttonClassNames = (players: Player[], color: PLAYER_COLOR) => {
 
 export default function PlayersSetupList() {
   const { value: players, setter: updatePlayers } = useContext(PlayersContext);
+  const scanner = useContext(ScannerContext);
   const handleClick = useCallback(
     (color: PLAYER_COLOR) => {
       if (coloredPlayerExists(players, color)) {
@@ -53,15 +54,23 @@ export default function PlayersSetupList() {
         });
         return;
       }
-      updatePlayers((players) => {
-        return [
-          ...players,
-          {
-            code: generateUuid(),
-            color: color.toString(),
-          },
-        ];
-      });
+      if (!scanner) return;
+      scanner.render(
+        (code) => {
+          updatePlayers((players) => {
+            return [
+              ...players.filter((player) => player.color !== color),
+              {
+                code,
+                color: color.toString(),
+              },
+            ];
+          });
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
     },
     [players]
   );

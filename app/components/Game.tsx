@@ -1,11 +1,17 @@
 "use client";
 
 import { useSessionStorage } from "@uidotdev/usehooks";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { GAME_STATE } from "../models";
-import { PlayersContext, GameStateContext } from "../context";
+import {
+  PlayersContext,
+  GameStateContext,
+  ScannerContext,
+  IScanner,
+} from "../context";
 import GameSetup from "./GameSetup";
 import GamePlay from "./GamePlay";
+import GameScanner from "./GameScanner";
 
 export default function Game() {
   const [players, setPlayers] = useSessionStorage("players", []);
@@ -19,8 +25,10 @@ export default function Game() {
       <h1>Deal with the Devil</h1>
       <GameStateContext.Provider value={stateCtx}>
         <PlayersContext.Provider value={playersCtx}>
-          {gameState === GAME_STATE.SETUP && <GameSetup />}
-          {gameState === GAME_STATE.PLAYING && <GamePlay />}
+          <GameScanner>
+            {gameState === GAME_STATE.SETUP && <GameSetup />}
+            {gameState === GAME_STATE.PLAYING && <GamePlay />}
+          </GameScanner>
         </PlayersContext.Provider>
       </GameStateContext.Provider>
     </main>
