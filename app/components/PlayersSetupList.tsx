@@ -59,7 +59,7 @@ export default function PlayersSetupList() {
         (code) => {
           updatePlayers((players) => {
             return [
-              ...players.filter((player) => player.color !== color),
+              ...players.filter((player) => player.code !== code),
               {
                 code,
                 color: color.toString(),

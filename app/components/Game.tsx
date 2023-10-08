@@ -22,10 +22,10 @@ export default function Game() {
 
   return (
     <main className="prose flex flex-col items-center justify-start">
-      <h1 className="pt-4">Deal with the Devil</h1>
       <GameStateContext.Provider value={stateCtx}>
         <PlayersContext.Provider value={playersCtx}>
           <GameScanner>
+            <h1 className="pt-4">Deal with the Devil</h1>
             {gameState === GAME_STATE.SETUP && <GameSetup />}
             {gameState === GAME_STATE.PLAYING && <GamePlay />}
           </GameScanner>
