@@ -21,8 +21,8 @@ export default function Game() {
   const playersCtx = { value: players, setter: setPlayers };
 
   return (
-    <main className="prose pt-2 px-2 flex flex-col items-center justify-start">
-      <h1>Deal with the Devil</h1>
+    <main className="prose flex flex-col items-center justify-start">
+      <h1 className="pt-4">Deal with the Devil</h1>
       <GameStateContext.Provider value={stateCtx}>
         <PlayersContext.Provider value={playersCtx}>
           <GameScanner>

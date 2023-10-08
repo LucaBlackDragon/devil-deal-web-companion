@@ -4,10 +4,10 @@ export enum GAME_STATE {
 };
 
 export enum PLAYER_COLOR {
-  RED = 'red',
-  BLUE = 'blue',
-  GREEN = 'green',
-  YELLOW = 'yellow',
+  RED = 'ROSSO',
+  BLUE = 'BLU',
+  GREEN = 'VERDE',
+  YELLOW = 'GIALLO',
 };
 
 export type Player = {

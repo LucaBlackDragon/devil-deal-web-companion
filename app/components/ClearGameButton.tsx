@@ -13,7 +13,7 @@ export default function ClearGameButton() {
 
   return (
     <button className="btn btn-secondary" onClick={onButtonClick}>
-      Ricomincia
+      Nuova partita
     </button>
   );
 }

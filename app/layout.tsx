@@ -12,7 +12,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="it" data-theme="fantasy">
-      <body className="w-screen min-h-screen flex flex-col items-center justify-start">{children}</body>
+      <body className="w-screen h-screen overflow-y-auto overflow-x-clip flex flex-col items-center justify-start">{children}</body>
     </html>
   );
 }
